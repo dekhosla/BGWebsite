@@ -1,0 +1,46 @@
+﻿/*Used for main screen button*/
+
+.col-md-4 {
+    width: 40%;
+    height: 80px;
+    border: 1px solid blue;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-top: 30px;
+    margin-right: 50px;
+    background: #0C234B;
+    color: white;
+    text-align: center;
+    border-radius: 25px;
+}
+.btn.focus, .btn:focus, .btn:hover {
+    text-decoration: none;
+    color: #cc665e;
+}
+.container {
+    position: static;
+    width: 90%;
+}
+/*Used for navigation button*/
+.payNav {
+    margin-top: 150px;
+    margin-bottom: 25px;
+}
+.button {
+    background-color: #ddd; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.nav-selected {
+    background-color: #9EABAE;
+}
+
+.nav-default {
+    background-color: #ddd;
+}

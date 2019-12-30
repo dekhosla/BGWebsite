@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>BGView</title>
+    <!--style sheet-->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://js.arcgis.com/3.31/dijit/themes/nihilo/nihilo.css">
+    <link href="CSS/BGViewCSS.css" rel="stylesheet" />
+    <link href="../../CSS/MainCss.css" rel="stylesheet" />
+    <link href="../../CSS/SecondCSS.css" rel="stylesheet" />
+    <!--Script-->
+    <script src="https://js.arcgis.com/4.13/"></script>
+
+    <script src="js/BGViewController.js"></script>
+    <style>
+
+        #screenshotDiv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #screenshotDiv > * {
+            margin: 0.5em;
+        }
+
+        .screenshotCursor {
+            cursor: crosshair;
+        }
+
+        .action-button {
+            padding: 0.6em;
+            border: 1px solid #0079c1;
+            text-align: center;
+            background-color: white;
+            cursor: pointer;
+        }
+
+            .action-button:hover,
+            .action-button:focus {
+                background: #0079c1;
+                color: white;
+            }
+
+        #maskDiv {   
+            margin-top:240px;
+            position: absolute;
+            background: rgba(255, 51, 0, 0.1);
+            border: 2px dashed rgb(255, 51, 0);           
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top:-10px;">
+        <div class="container" style="margin-top:20px;">
+            <div class="row" style="text-align:center;">
+                <div>
+                    <div style="text-align:center;">
+                        <a type="button" class="btn btn-default btn-md fa fa-home" style="background-color: #ddd;text-decoration:none; " href="../../index.html">&nbsp Home</a>
+                        <a type="button" class="btn btn-default btn-md fa fa-search" style="background-color: #9EABAE;text-decoration:none;" href="">&nbsp BuffelMap</a>
+                        <!--<a type="button" class="btn btn-default btn-md fa fa-plus" style="background-color: #ddd;text-decoration:none;" href="GoogleDataView.html"> &nbsp GoogleData</a>-->
+                        <a type="button" href="../../HelpDocuments/BuffelGrassPaper.pdf" style="background-color: #ddd;text-decoration:none;" class="btn btn-default btn-md fa fa-info">&nbsp Help</a>
+                    </div>
+                </div>
+            </div>
+            <h2 style="text-align:center;">Display Buffel Map</h2>
+        </div>
+        <div class="container" style="margin-top:-20px;margin-left:70px;">
+            <div class="col-sm-12">
+                <div class="col-sm-2">
+                    <table class="table table-responsive" style="margin-left:10px;  border:4px solid black;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Select Area of Interest
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <!--  <select style="width: 180px" id="areaOfIntrestSel" name="areaOfIntrestSel">  -->
+                                    <select style="width: 180px" id="areaOfIntrestSel" name="areaOfIntrestSel">
+                                        <option>Saguaro National Park</option>
+                                        <option>Davis_monthan</option>
+                                        <option>San_Xavier</option>
+                                        <option>Rincon_Wilderness</option>
+                                        <option>Pusch_ridge</option>
+                                        <option>OPCNM</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-9">
+                    <table class="table table-responsive" style="margin-left:10px;  border:4px solid black;">
+                        <tbody>
+                            <tr>
+                                <td>Prism: - <input type="checkbox" id="prismSelVal" /></td>
+                                <td>NDVI: - <input type="checkbox" id="modisSelVal" /></td>
+                                <td>Dynamics: - <input type="checkbox" id="dynamicsSelVal" /></td>
+                                <td>Diff: - <input type="checkbox" id="diffSelVal" /></td>
+                                <td>BG:- <input type="checkbox" id="bgSelVal" /></td>
+                                <td>Targets:- <input type="checkbox" id="targetSelVal" /></td>
+                            </tr>
+                        </tbody>                      
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select style="width: 180px" id="prismDropSel" name="prismDropSel">
+                                        <option selected="">Please Select</option>
+                                        <option>precipitation_buffelgrass_prism_0909_tif</option>
+                                        <option>precipitation_buffelgrass_prism_0916_tif</option>
+                                        <option>precipitation_buffelgrass_prism_0918_tif</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select style="width: 180px" id="modisDropSel" name="modisDropSel">
+                                        <option selected="">Please Select</option>
+                                        <option>NDVIcomp_258_09152019_Clip</option>
+                                        <option>NDVIcomp_273_09302019_Clip</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select style="width: 180px" id="dynamicsDropSel" name="dynamicsDropSel">
+                                        <option selected="">Please Select</option>
+                                        <option>K</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select style="width: 180px" id="diffDropSel" name="diffDropSel">
+                                        <option selected="">Please Select</option>
+                                        <option>difference_0930-0915</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select style="width: 180px" id="bgDropSel" name="bgDropSel">
+                                        <option selected="">Please Select</option>
+                                        <option>BG_point_Tucson</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select style="width: 180px" id="targetDropSel" name="targetDropSel">
+                                        <option selected="">Please Select</option>
+                                        <option>First Target Set</option>
+                                    </select>
+                                </td>
+                                <td><button class="btn-primary btn-lg" id="clickOkay" style="background-color:lightblue">Okay</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-1"></div>
+
+            </div>
+        </div>
+        <div>
+            <div id="viewDiv" style="position:absolute;left:10px;  margin-top:10px;width:100%;height: 380px;background-color: #ccf;" class="esri-widget">
+
+                <button id="screenshotBtn"
+                        class="action-button esri-widget"
+                        aria-label="Select screenshot area"
+                        title="Select screenshot area">
+                    Select screenshot area
+                </button>
+            </div>
+
+            <div id="screenshotDiv" class="hide">
+                <img style=" border: 10px solid white;
+            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);" class="js-screenshot-image" />
+                <div>
+                    <label>Set a text to be displayed on the image:</label><input type="text" placeholder="Image text" id="textInput" autofocus />
+                </div>
+                <button id="downloadBtn"
+                        class="action-button"
+                        aria-label="Download image"
+                        title="Download image">
+                    Download image
+                </button>
+                <button id="closeBtn"
+                        class="action-button"
+                        aria-label="Back to Map"
+                        title="Back to Map">
+                    Back to Map
+                </button>
+            </div>
+            <div id="maskDiv" class="hide screenshotCursor"></div>
+        </div>
+
+        <div id="layerToggle" class="esri-widget" style="margin-top:220px;">
+            <span id="prismShow"><input type="checkbox" id="prismLayerSel" /> Prism</span>
+            <span id="modisShow"><input type="checkbox" id="ndviLayerSel" /> NDVI</span>
+            <span id="dynamicShow"><input type="checkbox" id="dynamicsLayerSel" /> Dynamics</span>
+            <span id="diffShow"><input type="checkbox" id="differenceLayerSel" /> Difference</span>
+            <span id="bgShow"><input type="checkbox" id="bgLayersel" /> BG</span>
+            <span id="targetShow"><input type="checkbox" id="targetLayerSel" /> Targets</span>
+        </div>
+        </div>
+</body>
+</html>
