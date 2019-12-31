@@ -86,6 +86,8 @@
   <ItemGroup>
     <Content Include="HelpDocuments\BuffelGrassPaper.pdf" />
     <Content Include="HelpDocuments\Poster at SERSW_2017.pdf" />
+    <Content Include="HelpDocuments\BGViewPageHelpfile.pdf" />
+    <Content Include="HelpDocuments\AddEditBG.pdf" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\BufellPredection-december - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Buffelgrass - Web Deploy.pubxml" />

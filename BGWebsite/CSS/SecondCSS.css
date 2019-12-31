@@ -2,7 +2,9 @@
 
 .btn {
     display: inline-block;
-    padding: 6px 12px;
+   
+}
+/* padding: 6px 12px;
     padding: 0.5rem 1rem;
     margin-bottom: 0;
     font-size: 16px;
@@ -22,8 +24,7 @@
     user-select: none;
     background-image: none;
     border: 0;
-    letter-spacing: 0.05em;
-}
+    letter-spacing: 0.05em;*/
 
 .btn-default {
     color: #333;

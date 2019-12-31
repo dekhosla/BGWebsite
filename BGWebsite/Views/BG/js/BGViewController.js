@@ -478,7 +478,7 @@ require([
             view.ui.empty("bottom-left");  
             view.ui.add([
                 new Expand({
-                    view: view,
+                   
                     content: new Legend({ view: view }),
                     group: "top-left",
                     expanded: true
