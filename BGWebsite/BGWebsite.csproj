@@ -71,7 +71,10 @@
     <Content Include="CSS\SecondCSS.css" />
     <Content Include="index.html" />
     <Content Include="Views\BGAdd\BGAdd.html" />
+    <Content Include="Views\BGAdd\ExportAsShape.html" />
     <Content Include="Views\BGAdd\js\BGAddController.js" />
+    <Content Include="Views\BGAdd\js\JS2Shapefile.js" />
+    <Content Include="Views\BGAdd\js\jszip.js" />
     <Content Include="Views\BG\BGView.html" />
     <Content Include="Views\BG\CSS\BGViewCSS.css" />
     <Content Include="Views\BG\GoogleDataView.html" />
